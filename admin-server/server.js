@@ -5,7 +5,15 @@ const jwt = require("jsonwebtoken");
 const mysql = require("mysql2/promise");
 
 const app = express();
-app.use(cors());
+
+const corsOptions = {
+  origin: "https://user-managment-app-tau.vercel.app",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 const secretKey = "aVerySecretKeyThatIsHardToGuess123!@#";
