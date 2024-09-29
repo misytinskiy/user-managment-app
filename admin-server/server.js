@@ -7,6 +7,7 @@ const mysql = require("mysql2/promise");
 const app = express();
 
 const corsOptions = {
+  origin: "*",
   origin: "https://user-managment-app-tau.vercel.app",
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
