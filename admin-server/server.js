@@ -31,10 +31,10 @@ app.get("/", (req, res) => {
 // });
 
 const db = mysql.createPool({
-  host: "mysql.railway.internal",
+  host: "35.223.135.12",
   user: "root",
-  password: "ZSwwWZrmacXfBCOqnaKEifKWbOmdMQfS",
-  database: "railway",
+  password: "260199den",
+  database: "database1",
   port: 3306,
 });
 
