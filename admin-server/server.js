@@ -18,6 +18,10 @@ app.use(express.json());
 
 const secretKey = "aVerySecretKeyThatIsHardToGuess123!@#";
 
+app.get("/", (req, res) => {
+  res.send("Server is running!");
+});
+
 // const db = mysql.createPool({
 //   host: "localhost",
 //   user: "root",
