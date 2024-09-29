@@ -10,11 +10,19 @@ app.use(express.json());
 
 const secretKey = "aVerySecretKeyThatIsHardToGuess123!@#";
 
+// const db = mysql.createPool({
+//   host: "localhost",
+//   user: "root",
+//   password: "260199den",
+//   database: "user_management",
+// });
+
 const db = mysql.createPool({
-  host: "localhost",
+  host: "mysql.railway.internal",
   user: "root",
-  password: "260199den",
-  database: "user_management",
+  password: "ZSwwWZrmacXfBCOqnaKEifKWbOmdMQfS",
+  database: "railway",
+  port: 3306,
 });
 
 // Создание таблицы пользователей при инициализации сервера, если её ещё нет
