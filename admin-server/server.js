@@ -7,7 +7,6 @@ const mysql = require("mysql2/promise");
 const app = express();
 
 const corsOptions = {
-  origin: "*",
   origin: "https://user-managment-app-tau.vercel.app",
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
@@ -23,21 +22,24 @@ app.get("/", (req, res) => {
   res.send("Server is running!");
 });
 
-// const db = mysql.createPool({
-//   host: "localhost",
-//   user: "root",
-//   password: "260199den",
-//   database: "user_management",
-// });
-
 const db = mysql.createPool({
   host: "35.223.135.12",
   user: "root",
   password: "260199den",
   database: "database1",
   port: 3306,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
+  connectTimeout: 10000,
 });
 
+// const db = mysql.createPool({
+//   host: "localhost",
+//   user: "root",
+//   password: "260199den",
+//   database: "user_management",
+// });
 db.query("SELECT 1")
   .then(() => console.log("Database connected successfully"))
   .catch((err) => console.error("Error connecting to the database:", err));
