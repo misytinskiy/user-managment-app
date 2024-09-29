@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import axios from "axios";
+
+const API_URL = "https://user-managment-app-server.vercel.app"; // URL вашего серверного приложения
 
 function Auth() {
   const [email, setEmail] = useState("");
@@ -15,26 +16,22 @@ function Auth() {
     event.preventDefault();
 
     try {
-      if (authType === "signIn") {
-        // Аутентификация
-        const response = await axios.post("http://localhost:3001/login", {
-          email,
-          password,
-        });
-        localStorage.setItem("token", response.data.token);
-        setMessage("Вход выполнен успешно!");
-        navigate("/users");
-      } else {
-        // Регистрация
-        const response = await axios.post("http://localhost:3001/register", {
-          email,
-          password,
-          name,
-        });
-        localStorage.setItem("token", response.data.token);
-        setMessage("Registration successful!");
-        navigate("/users");
-      }
+      const url =
+        authType === "signIn" ? `${API_URL}/login` : `${API_URL}/register`;
+
+      const response = await axios.post(url, {
+        email,
+        password,
+        name,
+      });
+
+      localStorage.setItem("token", response.data.token);
+      setMessage(
+        authType === "signIn"
+          ? "Вход выполнен успешно!"
+          : "Регистрация успешна!"
+      );
+      navigate("/users");
     } catch (error) {
       console.error("Authorization error:", error);
       setMessage(`Error: ${error.response.data.error}`);

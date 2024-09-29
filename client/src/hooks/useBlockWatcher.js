@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
 import axios from "axios";
+
+const API_URL = "https://user-managment-app-server.vercel.app"; // URL вашего серверного приложения
 
 export function useBlockWatcher() {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ export function useBlockWatcher() {
         }
 
         // Запрос для проверки текущего статуса пользователя
-        const response = await axios.get("http://localhost:3001/user", {
+        const response = await axios.get(`${API_URL}/user`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

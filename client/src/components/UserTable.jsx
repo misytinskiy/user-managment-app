@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
-
 import axios from "axios";
+
+const API_URL = "https://user-managment-app-server.vercel.app";
 
 function UserTable() {
   const [users, setUsers] = useState([]);
@@ -22,7 +23,7 @@ function UserTable() {
       setLoading(true);
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get("http://localhost:3001/users", {
+        const response = await axios.get(`${API_URL}/users`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -49,7 +50,7 @@ function UserTable() {
     const checkUserStatus = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get("http://localhost:3001/user", {
+        const response = await axios.get(`${API_URL}/user`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -96,7 +97,7 @@ function UserTable() {
     try {
       const token = localStorage.getItem("token");
       await axios.post(
-        "http://localhost:3001/block-user",
+        `${API_URL}/block-user`,
         { userIds: selectedUsers },
         {
           headers: {
@@ -120,7 +121,7 @@ function UserTable() {
     try {
       const token = localStorage.getItem("token");
       await axios.post(
-        "http://localhost:3001/unblock-user",
+        `${API_URL}/unblock-user`,
         { userIds: selectedUsers },
         {
           headers: {
@@ -145,7 +146,7 @@ function UserTable() {
   const handleDeleteUsers = async () => {
     try {
       const token = localStorage.getItem("token");
-      await axios.delete("http://localhost:3001/delete-user", {
+      await axios.delete(`${API_URL}/delete-user`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
