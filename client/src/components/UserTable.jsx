@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import axios from "axios";
 
-const API_URL = "https://user-managment-app-server.vercel.app";
+const API_URL = "https://user-server-theta.vercel.app";
 
 function UserTable() {
   const [users, setUsers] = useState([]);

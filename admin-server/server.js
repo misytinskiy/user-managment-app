@@ -37,6 +37,10 @@ const db = mysql.createPool({
   port: 3306,
 });
 
+db.query("SELECT 1")
+  .then(() => console.log("Database connected successfully"))
+  .catch((err) => console.error("Error connecting to the database:", err));
+
 // Создание таблицы пользователей при инициализации сервера, если её ещё нет
 db.query(
   `
